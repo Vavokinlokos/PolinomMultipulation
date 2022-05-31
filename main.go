@@ -10,8 +10,6 @@ import (
 func main() {
 	first := "3x^4 + 3x^5 + x^2 + 1"
 	second := "5x^3 + 3"
-	fmt.Println("\nFirst polynom is " + first)
-	fmt.Println("\nSecond polynom is " + second)
 	firstMaxPow, err := GetMaxPow(first)
 	if err != nil {
 		fmt.Println(err)
@@ -22,8 +20,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(fmt.Sprintf("\nMAX POW OF FIRST POLYNOM IS %d", firstMaxPow))
-	fmt.Println(fmt.Sprintf("MAX POW OF SECOND POLYNOM IS %d", secondMaxPow))
 
 	firstCoeffs, err := GetCoeffs(first, firstMaxPow)
 	if err != nil {
@@ -36,7 +32,10 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
+	fmt.Println("\nFirst polynom is " + first)
+	fmt.Println("\nSecond polynom is " + second)
+	fmt.Println(fmt.Sprintf("\nMAX POW OF FIRST POLYNOM IS %d", firstMaxPow))
+	fmt.Println(fmt.Sprintf("MAX POW OF SECOND POLYNOM IS %d", secondMaxPow))
 	fmt.Print("\nFIRST POLYNOM'S COEFFS ARE ")
 	fmt.Print(firstCoeffs)
 	fmt.Print("\nSECOND POLYNOM'S COEFFS ARE ")
