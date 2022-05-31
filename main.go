@@ -10,6 +10,7 @@ import (
 func main() {
 	first := "3x^4 + 3x^5 + x^2 + 1"
 	second := "5x^3 + 3"
+
 	firstMaxPow, err := GetMaxPow(first)
 	if err != nil {
 		fmt.Println(err)
@@ -32,8 +33,9 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("\nFirst polynom is " + first)
-	fmt.Println("\nSecond polynom is " + second)
+
+	fmt.Println(fmt.Sprintf("\nFIRST POLYNOM IS %s", first))
+	fmt.Println(fmt.Sprintf("SECOND POLYNOM IS %s", second))
 	fmt.Println(fmt.Sprintf("\nMAX POW OF FIRST POLYNOM IS %d", firstMaxPow))
 	fmt.Println(fmt.Sprintf("MAX POW OF SECOND POLYNOM IS %d", secondMaxPow))
 	fmt.Print("\nFIRST POLYNOM'S COEFFS ARE ")
@@ -62,32 +64,25 @@ func multiply(first, second []float64) []float64 {
 }
 
 func printPolynom(polynom []float64) {
-	reversePolynom := reverseSlice(polynom)
-	for i, v := range reversePolynom {
-		if i == 0 {
+	for i := 0; i < len(polynom); i++ {
+		if polynom[i] == 0 {
 			continue
 		}
-		if v == 0 {
+		fmt.Print(polynom[i])
+		if len(polynom)-1-i == 0 {
 			continue
 		}
-		fmt.Print(v)
-		if i == len(polynom)-1 {
-			fmt.Print("x ")
+		if len(polynom)-1-i == 1 {
+			fmt.Print("x + ")
 			continue
-		} else {
-			if i != len(polynom) {
-				fmt.Print("x^", len(polynom)-i, " ")
-			}
+		}
+		if len(polynom)-2 != 0 {
+			fmt.Print("x^", len(polynom)-1-i, " ")
+		}
+		if i != len(polynom)-1 {
 			fmt.Print(" + ")
 		}
 	}
-}
-
-func reverseSlice(s []float64) []float64 {
-	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
-		s[i], s[j] = s[j], s[i]
-	}
-	return s
 }
 
 func GetCoeffs(input string, maxPow int64) ([]float64, error) {
